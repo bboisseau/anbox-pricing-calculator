@@ -10,11 +10,11 @@
 const NODE_PRICING = {
   virtual: {
     label: 'Virtual machine',
-    ubuntuProAnnual: 1700,
+    ubuntuProAnnual: 166.67,
     supportUplifts: {
       none: { label: 'None', annual: 0 },
-      'business-days': { label: 'Weekdays', annual: 1200 },
-      '24x7': { label: '24/7', annual: 2900 },
+      'business-days': { label: 'Weekdays', annual: 333.33 },
+      '24x7': { label: '24/7', annual: 833.33 },
     },
   },
   physical: {

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anbox Pricing Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <span class="eyebrow">On-prem estimator</span>
+      <h1>Anbox On-Prem Pricing Calculator</h1>
+      <p class="subtitle">Estimate yearly infrastructure licensing for Anbox Cloud on your own machines</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="calculator-grid">
+
+      <!-- Left: Configuration panel -->
+      <section class="config-panel card">
+        <h2>Configuration</h2>
+
+        <div class="form-group">
+          <label for="node-type">Machine Type</label>
+          <select id="node-type">
+            <option value="virtual" selected>Virtual machine</option>
+            <option value="physical">Physical machine</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="nodes">Number of Nodes</label>
+          <div class="input-row">
+            <input type="range" id="nodes-slider" min="1" max="250" value="10" />
+            <input type="number" id="nodes" min="1" max="2000" value="10" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="density">Instances per Machine (Density)</label>
+          <div class="input-row">
+            <input type="range" id="density-slider" min="1" max="120" value="55" />
+            <input type="number" id="density" min="1" max="500" value="55" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="support">Support Plan</label>
+          <select id="support">
+            <option value="none" selected>None</option>
+            <option value="business-days">Weekdays</option>
+            <option value="24x7">24/7</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="services">Professional Services</label>
+          <select id="services">
+            <option value="0" selected>None</option>
+            <option value="1">1 cluster design/deployment engagement</option>
+            <option value="2">2 cluster design/deployment engagements</option>
+          </select>
+        </div>
+
+        <div class="assumptions pricing-basics">
+          <strong>Pricing model</strong>
+          <ul>
+            <li>Per physical or virtual machine per year (not by core/socket).</li>
+            <li>Ubuntu Pro base license is priced per node and includes Anbox Cloud.</li>
+            <li>Support plan is modeled as an uplift on top of the Ubuntu Pro base.</li>
+            <li>Price per node is the maximum you would pay; equivalent public cloud pricing may be lower.</li>
+            <li>Customers can purchase a cloud build and an image build; pricing is available via sales only.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Right: Cost breakdown -->
+      <section class="results-panel card">
+        <h2>Cost Estimate</h2>
+
+        <div class="estimate-hero">
+          <span class="estimate-label">Estimated Yearly Total</span>
+          <span class="estimate-value" id="total-cost">$0.00</span>
+        </div>
+
+        <div class="summary-strip" id="summary-strip">0 total instances across 0 nodes</div>
+
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Line Item</th>
+              <th>Unit Price</th>
+              <th>Qty</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="breakdown-body">
+            <!-- Populated by JS -->
+          </tbody>
+          <tfoot>
+            <tr class="total-row">
+              <td colspan="3">Yearly Total</td>
+              <td id="footer-total">$0.00</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="assumptions">
+          <strong>Assumptions and benchmark context</strong>
+          <ul>
+            <li>Benchmarks are indicative only and not performance guarantees.</li>
+            <li>Benchmark reference: 55 containers per VM at 720p / avg 28 FPS on g5g.metal with Bombsquad. See <a href="https://documentation.ubuntu.com/anbox-cloud/reference/perf-benchmarks/" target="_blank" rel="noopener noreferrer">performance benchmarks</a> for details.</li>
+            <li>Cost per session reference uses yearly effective node price (base + support uplift) divided by density.</li>
+            <li>Volume discounts are not applied here — contact sales for a custom quote at scale.</li>
+          </ul>
+        </div>
+
+        <div class="assumptions discount-legend">
+          <strong>Volume discounts available</strong>
+          <p>Deploying at scale? <a href="mailto:sales@canonical.com">Contact us</a> — volume discounts are available for larger node counts.</p>
+        </div>
+
+        <button class="btn-export" id="export-btn">Export as CSV</button>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>Anbox Pricing Calculator &mdash; estimates only, not a binding quote.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

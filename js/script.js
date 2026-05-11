@@ -13,7 +13,7 @@ const NODE_PRICING = {
     ubuntuProAnnual: 166.67,
     supportUplifts: {
       none: { label: 'None', annual: 0 },
-      'business-days': { label: 'Weekdays', annual: 333.33 },
+      'business-days': { label: 'Weekdays', annual: 400 },
       '24x7': { label: '24/7', annual: 833.33 },
     },
   },

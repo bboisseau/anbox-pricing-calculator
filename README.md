@@ -36,31 +36,6 @@ anbox-pricing-calculator/
 └── v3/                 # Latest improvements
 ```
 
-## Pricing Model
-
-All prices are in USD and based on annual licensing:
-
-### Machine Licensing
-- **Virtual Machine**: $500/year per node
-- **Physical Machine**: $1,700/year per node
-
-### Support Plans
-- **None**: No additional cost
-- **Business Days (Weekdays)**: +$1,200/year per node
-- **24/7 Support**: +$2,900/year per node
-
-### Professional Services
-- **None**: $0
-- **First Cluster**: $60,000
-- **First Two Clusters**: $90,000
-
-### Volume Discounts
-Applied to total machine licensing costs:
-- 1-9 nodes: 0%
-- 10-24 nodes: 5%
-- 25-49 nodes: 10%
-- 50+ nodes: 15%
-
 ## Usage
 
 1. Select your machine type (Virtual or Physical)

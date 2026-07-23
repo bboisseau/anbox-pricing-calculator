@@ -432,3 +432,99 @@ footer {
     width: 74px;
   }
 }
+
+/* ===== Tabs ===== */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e7d8d0;
+  overflow-x: auto;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.tab-btn:hover {
+  color: var(--brand-dark);
+}
+.tab-btn.active {
+  color: var(--brand);
+  border-bottom-color: var(--brand);
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Checkbox Group ===== */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: #fff;
+  padding: 1rem;
+  border: 1.5px solid #e0cfc2;
+  border-radius: 12px;
+}
+.checkbox-group input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--brand);
+  cursor: pointer;
+}
+.checkbox-group label {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* ===== Option 3: AI Flavor ===== */
+.card.ai-flavor {
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+.card.ai-flavor h2 {
+  border-bottom: none;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  background: linear-gradient(135deg, var(--brand-dark), var(--brand));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.intro-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+.guided-summary {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #fffbf9 0%, #fef8f5 100%);
+  border-left: 4px solid var(--brand);
+  padding: 1.2rem;
+  border-radius: 0 12px 12px 0;
+}
+.guided-summary strong {
+  color: var(--brand-dark);
+}

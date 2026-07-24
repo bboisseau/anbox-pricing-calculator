@@ -214,9 +214,7 @@ const v1DensitySlider = document.getElementById('v1-density-slider');
 const v1SupportEl = document.getElementById('v1-support');
 const v1ServicesEl = document.getElementById('v1-services');
 const v1TotalCostEl = document.getElementById('v1-total-cost');
-const v1FooterTotalEl = document.getElementById('v1-footer-total');
-const v1BreakdownBodyEl = document.getElementById('v1-breakdown-body');
-const v1ExportBtn = document.getElementById('v1-export-btn');
+const v1CostPerSessionEl = document.getElementById('v1-cost-per-session');
 const v1SummaryStripEl = document.getElementById('v1-summary-strip');
 
 function syncSliderToNumber(slider, number, callback) {
@@ -259,31 +257,12 @@ function calculateV1() {
   const maxPerSessionYearly = density > 0 ? effectiveNodePrice / density : 0;
 
   v1TotalCostEl.textContent = formatUSD(totalAnnual);
-  v1FooterTotalEl.textContent = formatUSD(totalAnnual);
+  v1CostPerSessionEl.textContent = formatUSD(maxPerSessionYearly);
   v1SummaryStripEl.textContent = `${totalInstances.toLocaleString('en-US')} total instances across ${nodeCount.toLocaleString('en-US')} nodes`;
-
-  const rows = [
-    { label: `Ubuntu Pro base (${model.label})`, unitPrice: `${formatUSD(baseNodePrice)} / node / year`, qty: `${nodeCount.toLocaleString('en-US')} nodes`, subtotal: formatUSD(baseLicenseTotal) },
-    { label: `Support (${supportUplift.label})`, unitPrice: `${formatUSD(supportPerNode)} / node / year`, qty: `${nodeCount.toLocaleString('en-US')} nodes`, subtotal: formatUSD(supportTotal) },
-    { label: 'Infrastructure total', unitPrice: `${formatUSD(effectiveNodePrice)} / node / year`, qty: `${nodeCount.toLocaleString('en-US')} nodes`, subtotal: formatUSD(infrastructureTotal) },
-    { label: 'Cost per session (reference)', unitPrice: 'Node price / density', qty: `${formatUSD(effectiveNodePrice)} / ${density}`, subtotal: formatUSD(maxPerSessionYearly) },
-  ];
-
-  if (servicesPlan.annual > 0) {
-    rows.push({ label: `Professional services (${servicesPlan.label})`, unitPrice: 'Fixed engagement', qty: servicesKey === '1' ? '1 cluster' : '2 clusters', subtotal: formatUSD(servicesPlan.annual) });
-  }
-
-  v1BreakdownBodyEl.innerHTML = rows.map(r => `<tr><td>${r.label}</td><td>${r.unitPrice}</td><td>${r.qty}</td><td>${r.subtotal}</td></tr>`).join('');
 }
 
 [v1NodeTypeEl, v1SupportEl, v1ServicesEl].forEach(el => el.addEventListener('change', calculateV1));
 calculateV1();
-
-v1ExportBtn.addEventListener('click', () => {
-  const rows = [...v1BreakdownBodyEl.querySelectorAll('tr')].map(tr => [...tr.querySelectorAll('td')].map(td => `"${td.textContent.trim()}"`).join(','));
-  const csv = ['"Line Item","Unit Price","Qty","Subtotal"', ...rows, `"Yearly Total","","","${v1FooterTotalEl.textContent}"`].join('\n');
-  downloadCSV(csv, 'anbox-onprem-estimate.csv');
-});
 
 // ---------------------------------------------------------------------------
 // Helpers

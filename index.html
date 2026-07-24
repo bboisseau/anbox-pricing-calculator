@@ -103,14 +103,6 @@
             <label for="v2-services">Include Professional Deployment Services</label>
           </div>
 
-          <div class="assumptions pricing-basics">
-            <strong>Pricing model</strong>
-            <ul>
-              <li>Per physical or virtual machine per year.</li>
-              <li>Ubuntu Pro base license is priced per node and includes Anbox Cloud.</li>
-              <li>Support plan is modeled as an uplift on top of the Ubuntu Pro base.</li>
-            </ul>
-          </div>
         </section>
 
         <section class="results-panel card">
@@ -174,20 +166,14 @@
             </select>
           </div>
 
-          <div class="assumptions pricing-basics">
-            <strong>Pricing model</strong>
-            <ul>
-              <li>Per physical or virtual machine per year (not by core/socket).</li>
-              <li>Ubuntu Pro base license is priced per node and includes Anbox Cloud.</li>
-              <li>Support plan is modeled as an uplift on top of the Ubuntu Pro base.</li>
-              <li>Price per node is the maximum you would pay; equivalent public cloud pricing may be lower.</li>
-              <li>Customers can purchase a cloud build and an image build; pricing is available via sales only.</li>
-            </ul>
-          </div>
         </section>
 
         <section class="results-panel card">
           <h2>Cost Estimate</h2>
+
+          <div class="cost-per-session" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+            Cost per session (reference): <strong id="v1-cost-per-session" style="color: var(--text-color); font-size: 1.1rem;">$0.00</strong> / year
+          </div>
 
           <div class="estimate-hero">
             <span class="estimate-label">Estimated Yearly Total</span>
@@ -195,42 +181,6 @@
           </div>
 
           <div class="summary-strip" id="v1-summary-strip">0 total instances across 0 nodes</div>
-
-          <table class="breakdown-table">
-            <thead>
-              <tr>
-                <th>Line Item</th>
-                <th>Unit Price</th>
-                <th>Qty</th>
-                <th>Subtotal</th>
-              </tr>
-            </thead>
-            <tbody id="v1-breakdown-body">
-            </tbody>
-            <tfoot>
-              <tr class="total-row">
-                <td colspan="3">Yearly Total</td>
-                <td id="v1-footer-total">$0.00</td>
-              </tr>
-            </tfoot>
-          </table>
-
-          <div class="assumptions">
-            <strong>Assumptions and benchmark context</strong>
-            <ul>
-              <li>Benchmarks are indicative only and not performance guarantees.</li>
-              <li>Benchmark reference: 55 containers per VM at 720p / avg 28 FPS on g5g.metal with Bombsquad. See <a href="https://documentation.ubuntu.com/anbox-cloud/reference/perf-benchmarks/" target="_blank" rel="noopener noreferrer">performance benchmarks</a> for details.</li>
-              <li>Cost per session reference uses yearly effective node price (base + support uplift) divided by density.</li>
-              <li>Volume discounts are not applied here — contact sales for a custom quote at scale.</li>
-            </ul>
-          </div>
-
-          <div class="assumptions discount-legend">
-            <strong>Volume discounts available</strong>
-            <p>Deploying at scale? <a href="mailto:sales@canonical.com">Contact us</a> — volume discounts are available for larger node counts.</p>
-          </div>
-
-          <button class="btn-export" id="v1-export-btn">Export as CSV</button>
         </section>
       </div>
     </div>

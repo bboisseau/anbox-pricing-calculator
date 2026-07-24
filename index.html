@@ -171,16 +171,19 @@
         <section class="results-panel card">
           <h2>Cost Estimate</h2>
 
-          <div class="cost-per-session" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-            Cost per session (reference): <strong id="v1-cost-per-session" style="color: var(--text-color); font-size: 1.1rem;">$0.00</strong> / year
-          </div>
-
           <div class="estimate-hero">
-            <span class="estimate-label">Estimated Yearly Total</span>
+            <span class="estimate-label">
+              Estimated Yearly Total
+              <span id="v1-discount-badge" style="display: none; background: #e2f5ec; color: #0f5132; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; margin-left: 8px; vertical-align: middle;"></span>
+            </span>
             <span class="estimate-value" id="v1-total-cost">$0.00</span>
           </div>
 
           <div class="summary-strip" id="v1-summary-strip">0 total instances across 0 nodes</div>
+
+          <div class="cost-per-session" style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+            Cost per session (reference): <strong id="v1-cost-per-session" style="color: var(--text-color); font-size: 1.1rem;">$0.00</strong> / year
+          </div>
         </section>
       </div>
     </div>

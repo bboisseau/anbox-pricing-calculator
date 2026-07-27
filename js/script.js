@@ -216,7 +216,6 @@ const v1ServicesEl = document.getElementById('v1-services');
 const v1TotalCostEl = document.getElementById('v1-total-cost');
 const v1CostPerSessionEl = document.getElementById('v1-cost-per-session');
 const v1SummaryStripEl = document.getElementById('v1-summary-strip');
-const v1DiscountBadgeEl = document.getElementById('v1-discount-badge');
 
 function syncSliderToNumber(slider, number, callback) {
   slider.addEventListener('input', () => { number.value = slider.value; callback(); });
@@ -247,16 +246,9 @@ function calculateV1() {
 
   const baseNodePrice = model.ubuntuProAnnual;
   const supportPerNode = supportUplift.annual;
+  const effectiveNodePrice = baseNodePrice + supportPerNode;
 
-  let discountMultiplier = 0;
-  if (nodeCount >= 50) discountMultiplier = 0.15;
-  else if (nodeCount >= 25) discountMultiplier = 0.10;
-  else if (nodeCount >= 10) discountMultiplier = 0.05;
-
-  const discountedNodePrice = baseNodePrice * (1 - discountMultiplier);
-  const effectiveNodePrice = discountedNodePrice + supportPerNode;
-
-  const baseLicenseTotal = discountedNodePrice * nodeCount;
+  const baseLicenseTotal = baseNodePrice * nodeCount;
   const supportTotal = supportPerNode * nodeCount;
   const infrastructureTotal = effectiveNodePrice * nodeCount;
 
@@ -267,13 +259,6 @@ function calculateV1() {
   v1TotalCostEl.textContent = formatUSD(totalAnnual);
   v1CostPerSessionEl.textContent = formatUSD(maxPerSessionYearly);
   v1SummaryStripEl.textContent = `${totalInstances.toLocaleString('en-US')} total instances across ${nodeCount.toLocaleString('en-US')} nodes`;
-
-  if (discountMultiplier > 0) {
-    v1DiscountBadgeEl.textContent = `-${discountMultiplier * 100}% Volume Discount`;
-    v1DiscountBadgeEl.style.display = 'inline-block';
-  } else {
-    v1DiscountBadgeEl.style.display = 'none';
-  }
 }
 
 [v1NodeTypeEl, v1SupportEl, v1ServicesEl].forEach(el => el.addEventListener('change', calculateV1));
